@@ -1,4 +1,7 @@
+import { useState } from 'react'
+import Tilt from 'react-parallax-tilt'
 import Cursor from './Cursor'
+import BlurRain from './BlurRain'
 
 const services = [
   'Frontend Development',
@@ -9,9 +12,33 @@ const services = [
 ]
 
 export default function App() {
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [status, setStatus] = useState('idle')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus('sending')
+    try {
+      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (res.ok) {
+        setStatus('success')
+        setForm({ name: '', email: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
+
   return (
     <>
       <Cursor />
+      <BlurRain />
       <video className="bg" autoPlay muted loop playsInline>
         <source src="/cube.mp4" type="video/mp4" />
       </video>
@@ -19,6 +46,7 @@ export default function App() {
       <nav className="glass nav-full">
         <span className="logo">NAMAN SAINI</span>
         <a href="#about">About</a>
+        <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -30,8 +58,16 @@ export default function App() {
             I'm Naman Saini, a B-Tech student and developer who turns ideas
             into polished, working products — from concept to deployment.
           </p>
+          <div className="cta-row">
+            <a href="#skills" className="btn btn-primary">View Work</a>
+            <a href="/resume.pdf" download className="btn btn-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Resume
+            </a>
+          </div>
         </header>
 
+        <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} glareEnable glareMaxOpacity={0.25} glareColor="#ffffff" glareBorderRadius="18px" transitionSpeed={1500}>
         <section id="about" className="glass">
           <h2>About Me</h2>
           <p>
@@ -40,7 +76,24 @@ export default function App() {
             website, handling the details along the way.
           </p>
         </section>
+        </Tilt>
 
+        <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} glareEnable glareMaxOpacity={0.25} glareColor="#ffffff" glareBorderRadius="18px" transitionSpeed={1500}>
+        <section id="experience" className="glass">
+          <h2>Experience</h2>
+          <div className="exp-head">
+            <h3>Web Development Intern</h3>
+            <span className="badge">Sirius AI</span>
+          </div>
+          <ul>
+            <li>Developed and optimized responsive UI components using React and TypeScript.</li>
+            <li>Integrated backend REST APIs and improved user experience across main features.</li>
+            <li>Collaborated with cross-functional team members to ship clean, production-ready code.</li>
+          </ul>
+        </section>
+        </Tilt>
+
+        <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} glareEnable glareMaxOpacity={0.25} glareColor="#ffffff" glareBorderRadius="18px" transitionSpeed={1500}>
         <section id="skills" className="glass">
           <h2>What I Can Do</h2>
           <div className="skills">
@@ -49,10 +102,44 @@ export default function App() {
             ))}
           </div>
         </section>
+        </Tilt>
 
         <footer id="contact" className="glass">
           <h2>Let's Build Something</h2>
           <p>Have an idea? I'd love to hear about it.</p>
+
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              required
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+            />
+            <textarea
+              name="message"
+              placeholder="Message"
+              rows="4"
+              required
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+            />
+            <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
+              {status === 'sending' ? 'Sending…' : 'Send Message'}
+            </button>
+            {status === 'success' && <p className="form-msg success">Thanks! Your message has been sent.</p>}
+            {status === 'error' && <p className="form-msg error">Something went wrong. Please try again.</p>}
+          </form>
+
           <div className="links">
             <a href="https://github.com/NamanSaini2007" target="_blank" rel="noreferrer">GitHub</a>
             <a href="https://www.linkedin.com/in/naman-saini-213a48322/" target="_blank" rel="noreferrer">LinkedIn</a>

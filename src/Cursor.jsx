@@ -1,44 +1,60 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function Cursor() {
   const dotRef = useRef(null)
-  const ringRef = useRef(null)
+  const [hovering, setHovering] = useState(false)
+  const [isFine, setIsFine] = useState(true)
 
   useEffect(() => {
+    setIsFine(window.matchMedia('(pointer: fine)').matches)
+  }, [])
+
+  useEffect(() => {
+    if (!isFine) return
     let mx = window.innerWidth / 2
     let my = window.innerHeight / 2
-    let rx = mx
-    let ry = my
+    let cx = mx
+    let cy = my
 
     const onMove = (e) => {
       mx = e.clientX
       my = e.clientY
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`
-      }
     }
 
+    let raf
     const loop = () => {
-      rx += (mx - rx) * 0.15
-      ry += (my - ry) * 0.15
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`
+      cx += (mx - cx) * 0.2
+      cy += (my - cy) * 0.2
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`
       }
-      requestAnimationFrame(loop)
+      raf = requestAnimationFrame(loop)
+    }
+
+    const over = (e) => {
+      if (e.target.closest('a, button, input, textarea, .interactive')) setHovering(true)
+    }
+    const out = (e) => {
+      if (e.target.closest('a, button, input, textarea, .interactive')) setHovering(false)
     }
 
     window.addEventListener('mousemove', onMove)
-    const raf = requestAnimationFrame(loop)
+    window.addEventListener('mouseover', over)
+    window.addEventListener('mouseout', out)
+    raf = requestAnimationFrame(loop)
     return () => {
       window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mouseover', over)
+      window.removeEventListener('mouseout', out)
       cancelAnimationFrame(raf)
     }
-  }, [])
+  }, [isFine])
+
+  if (!isFine) return null
 
   return (
     <>
-      <div ref={dotRef} className="cursor-dot" />
-      <div ref={ringRef} className="cursor-ring" />
+      <div ref={dotRef} className={`cursor-dot${hovering ? ' cursor-hover' : ''}`} />
     </>
   )
 }
