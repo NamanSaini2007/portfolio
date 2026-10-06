@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Tilt from 'react-parallax-tilt'
 import Cursor from './Cursor'
 import BlurRain from './BlurRain'
+import DogGuide from './DogGuide'
 
 const services = [
   'Frontend Development',
@@ -39,20 +40,23 @@ export default function App() {
     <>
       <Cursor />
       <BlurRain />
-      <video className="bg" autoPlay muted loop playsInline>
-        <source src="/cube.mp4" type="video/mp4" />
-      </video>
+      <DogGuide />
 
-      <nav className="glass nav-full">
-        <span className="logo">NAMAN SAINI</span>
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <section className="hero-section">
+        <video className="bg" autoPlay muted loop playsInline>
+          <source src="/cube.mp4" type="video/mp4" />
+        </video>
 
-      <div className="container">
-        <header className="glass hero">
+        <nav className="nav-full">
+          <span className="logo">NAMAN SAINI</span>
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div className="container hero-container">
+          <header className="hero">
           <h1>Building digital experiences that make an impact.</h1>
           <p>
             I'm Naman Saini, a B-Tech student and developer who turns ideas
@@ -66,7 +70,11 @@ export default function App() {
             </a>
           </div>
         </header>
+        </div>
+      </section>
 
+      <main className="body-section">
+      <div className="container">
         <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} glareEnable glareMaxOpacity={0.25} glareColor="#ffffff" glareBorderRadius="18px" transitionSpeed={1500}>
         <section id="about" className="glass">
           <h2>About Me</h2>
@@ -146,6 +154,7 @@ export default function App() {
           </div>
         </footer>
       </div>
+      </main>
 
       <footer className="site-footer">
         <h2>Naman Saini</h2>

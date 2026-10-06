@@ -8,19 +8,150 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-  color: #fff;
-  min-height: 100vh;
+.hero-section {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, #FDFBF7);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .bg {
-  position: fixed;
+  position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1;
+  z-index: 0;
+}
+
+.nav-full {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1rem 2rem;
+  color: #fff;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 6rem;
+}
+
+.hero {
+  padding: 2rem 0;
+}
+
+.hero h1 {
+  color: #fff;
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.body-section {
+  background: #FDFBF7;
+  color: #1f2937;
+  padding: 4rem 0 2rem;
+}
+
+.body-section h2 {
+  color: #0a0a0a;
+}
+
+.body-section p,
+.body-section li,
+.body-section h3 {
+  color: #1f2937;
+}
+
+.body-section .glass {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  color: #1f2937;
+}
+
+.body-section .exp-head h3 {
+  color: #0a0a0a;
+}
+
+.body-section .badge {
+  background: #1A1A1A;
+  color: #FDFBF7;
+  border-color: transparent;
+}
+
+.body-section .chip {
+  background: #1A1A1A;
+  color: #FDFBF7;
+  border-color: transparent;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.body-section .chip:hover {
+  background: #374151;
+  transform: translateY(-2px);
+}
+
+.body-section .contact-form input,
+.body-section .contact-form textarea {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #1A1A1A;
+}
+
+.body-section .contact-form input::placeholder,
+.body-section .contact-form textarea::placeholder {
+  color: #9CA3AF;
+}
+
+.body-section .contact-form input:focus,
+.body-section .contact-form textarea:focus {
+  border-color: #1A1A1A;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+.body-section .btn-primary {
+  background: #1A1A1A;
+  color: #FDFBF7;
+}
+
+.body-section .links a {
+  color: #1A1A1A;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.body-section .links a:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: #fff;
+  min-height: 100vh;
+  background: #FDFBF7;
 }
 
 .container {
@@ -124,7 +255,7 @@ section p, footer p {
 
 #experience ul {
   padding-left: 1.25rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: #1f2937;
 }
 
 #experience li {
@@ -258,6 +389,86 @@ section p, footer p {
 
 .form-msg.error {
   color: #fca5a5;
+}
+
+.dog-guide {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dog-bubble {
+  position: relative;
+  max-width: 220px;
+  padding: 0.6rem 1rem;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dog-bubble.dark {
+  background: rgba(23, 23, 23, 0.8);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.dog-bubble.light {
+  background: rgba(23, 23, 23, 0.8);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
+}
+
+.dog-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.dog-bubble.dark::after {
+  background: rgba(23, 23, 23, 0.8);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dog-bubble.light::after {
+  background: rgba(23, 23, 23, 0.8);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dog-toggle {
+  position: absolute;
+  top: -0.6rem;
+  right: -0.6rem;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(20, 25, 40, 0.9);
+  color: #fff;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.dog-show {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .cursor-dot {
