@@ -148,22 +148,56 @@ export default function App() {
             {status === 'error' && <p className="form-msg error">Something went wrong. Please try again.</p>}
           </form>
 
-          <div className="links">
-            <a href="https://github.com/NamanSaini2007" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/in/naman-saini-213a48322/" target="_blank" rel="noreferrer">LinkedIn</a>
-          </div>
         </footer>
       </div>
       </main>
 
       <footer className="site-footer">
-        <h2>Naman Saini</h2>
-        <p>B-Tech Student · Developer — crafting modern web experiences.</p>
-        <div className="footer-links">
-          <a href="https://github.com/NamanSaini2007" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://www.linkedin.com/in/naman-saini-213a48322/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <div className="stars" />
+        <div className="moon" />
+        <div className="mist" />
+
+        <div className="footer-grid">
+          <div className="footer-col">
+            <h4>PAGES</h4>
+            <a href="#top">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#experience">EXPERIENCE</a>
+            <a href="#skills">SKILLS</a>
+            <a href="#contact">CONTACT</a>
+          </div>
+
+          <div className="footer-center">
+            <p className="footer-signature">Naman Saini</p>
+            <h2 className="footer-headline">BUILDING<br />THE FUTURE.</h2>
+          </div>
+
+          <div className="footer-col right">
+            <h4>FOLLOW ON</h4>
+            <a href="https://github.com/NamanSaini2007" target="_blank" rel="noreferrer">GITHUB</a>
+            <a href="https://www.linkedin.com/in/naman-saini-213a48322/" target="_blank" rel="noreferrer">LINKEDIN</a>
+            <a href="https://x.com" target="_blank" rel="noreferrer">TWITTER/X</a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer">INSTAGRAM</a>
+          </div>
         </div>
-        <small>© 2026 Naman Saini. All rights reserved.</small>
+
+        <div className="marquee">
+          <div className="marquee-track">
+            {'DISCIPLINE OVER MOTIVATION ✦ INNOVATE & EXECUTE ✦ CODE WITH PURPOSE ✦ ALWAYS BRINGING THE FIGHT ✦ PERSISTENCE BEATS TALENT ✦ BUILD FOR SCALE ✦ '.repeat(2)}
+          </div>
+        </div>
+
+        <div className="footer-cta">
+          <a href="mailto:namansaini252007@gmail.com" className="btn btn-white">GET IN TOUCH →</a>
+        </div>
+
+        <div className="footer-bar">
+          <small>© 2026 Naman Saini. All rights reserved.</small>
+          <div>
+            <a href="#">PRIVACY POLICY</a>
+            <a href="#">TERMS</a>
+          </div>
+        </div>
       </footer>
     </>
   )
