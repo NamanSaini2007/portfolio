@@ -3,6 +3,7 @@ import Tilt from 'react-parallax-tilt'
 import Cursor from './Cursor'
 import BlurRain from './BlurRain'
 import DogGuide from './DogGuide'
+import BackgroundLines from './BackgroundLines'
 
 const services = [
   'Frontend Development',
@@ -74,6 +75,7 @@ export default function App() {
       </section>
 
       <main className="body-section">
+      <BackgroundLines />
       <div className="container">
         <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} glareEnable glareMaxOpacity={0.25} glareColor="#ffffff" glareBorderRadius="18px" transitionSpeed={1500}>
         <section id="about" className="glass">
@@ -153,6 +155,25 @@ export default function App() {
       </main>
 
       <footer className="site-footer">
+        <div className="footer-sky">
+          {Array.from({ length: 35 }).map((_, i) => (
+            <span
+              key={i}
+              className="star-dot"
+              style={{
+                width: i % 3 === 0 ? '6px' : '4px',
+                height: i % 3 === 0 ? '6px' : '4px',
+                left: `${(i * 29) % 100}%`,
+                top: `${(i * 17) % 48}%`,
+                animationDuration: `${1 + (i % 5) * 0.5}s`,
+                animationDelay: `${(i * 0.31) % 3}s`,
+              }}
+            />
+          ))}
+          <span className="shooting" style={{ top: '8%', left: '70%', animationDelay: '0s' }} />
+          <span className="shooting" style={{ top: '18%', left: '85%', animationDelay: '1.7s' }} />
+          <span className="shooting" style={{ top: '4%', left: '45%', animationDelay: '3.4s' }} />
+        </div>
         <div className="stars" />
         <div className="moon" />
         <div className="mist" />

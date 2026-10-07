@@ -45,11 +45,19 @@ export default function DogGuide() {
   const [theme, setTheme] = useState('dark')
 
   useEffect(() => {
+    const guide = document.querySelector('.dog-guide')
     const onScroll = () => {
+      const footer = document.querySelector('.site-footer')
       const hero = document.querySelector('.hero-section')
-      if (!hero) return
-      const heroBottom = hero.getBoundingClientRect().bottom
-      setTheme(heroBottom > window.innerHeight * 0.75 ? 'dark' : 'light')
+      if (hero) {
+        const heroBottom = hero.getBoundingClientRect().bottom
+        setTheme(heroBottom > window.innerHeight * 0.75 ? 'dark' : 'light')
+      }
+      if (footer && guide) {
+        const fTop = footer.getBoundingClientRect().top
+        const lift = window.innerHeight - fTop + 8
+        guide.style.bottom = `${Math.max(24, lift)}px`
+      }
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
