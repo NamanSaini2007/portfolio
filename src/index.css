@@ -539,7 +539,7 @@ section p, footer p {
 .dog-guide {
   position: fixed;
   bottom: 1.5rem;
-  right: 2.5rem;
+  right: 6rem;
   transform: scale(0.9);
   transform-origin: bottom right;
   transition: bottom 0.3s ease-out;
@@ -803,6 +803,20 @@ section p, footer p {
 
 .btn-white:hover {
   background: rgba(255, 255, 255, 0.85);
+  transform: scale(1.05);
+}
+
+.btn {
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+html.light .footer-cta a {
+  background: #0f172a !important;
+  color: #ffffff !important;
+}
+
+html.light .footer-cta a span {
+  color: #ffffff !important;
 }
 
 .footer-bar {
@@ -994,3 +1008,81 @@ section p, footer p {
 .site-footer small {
   color: #a3a3a3;
 }
+
+
+html.light body { background: #FAF8F5; color: #0f172a; }
+html.light .body-section { background: #FAF8F5; color: #475569; }
+html.light .body-section h2 { color: #0f172a; }
+html.light .body-section p, html.light .body-section li, html.light .body-section h3 { color: #475569; }
+html.light .body-section .glass { background: rgba(255,255,255,0.8); border: 1px solid rgba(120,53,15,0.08); box-shadow: 0 10px 25px rgba(120,53,15,0.06); color: #475569; }
+html.light .body-section .chip { background: rgba(16,185,129,0.1); color: #065f46; border: 1px solid rgba(16,185,129,0.3); }
+html.light .body-section .badge { background: rgba(16,185,129,0.12); color: #047857; border: 1px solid rgba(16,185,129,0.3); }
+html.light .body-section .contact-form input, html.light .body-section .contact-form textarea { background: #fff; border: 1px solid #cbd5e1; color: #0f172a; }
+html.light .body-section .contact-form input::placeholder, html.light .body-section .contact-form textarea::placeholder { color: #94a3b8; }
+html.light .body-section .btn-primary { background: #0f172a; color: #fff; }
+html.light .body-section .links a { color: #0f172a; border: 1px solid #cbd5e1; background: rgba(255,255,255,0.6); }
+html.light .hero-section::after { background: linear-gradient(to bottom, transparent, #FAF8F5); }
+html.light .site-footer { background: #FBF9F4; border: 1px solid rgba(226,232,240,1); color: #0f172a; }
+html.light .site-footer h2, html.light .site-footer a { color: #0f172a; }
+html.light .site-footer p, html.light .site-footer small { color: #64748b; }
+html.light .site-footer .footer-col a { color: #334155; }
+html.light .site-footer .footer-col h4 { color: #94a3b8; }
+html.light .footer-sky, html.light .stars, html.light .moon, html.light .mist { display: none; }
+html.light .sun-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top right, rgba(254, 243, 199, 0.5), rgba(255, 237, 213, 0.2), transparent 60%);
+  pointer-events: none;
+}
+.sun-glow { display: none; }
+html.light .sun-glow { display: block; }
+.sun-disc { display: none; }
+html.light .sun-disc {
+  display: block;
+  position: absolute;
+  top: 1.5rem;
+  right: 3rem;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 999px;
+  background: linear-gradient(to top right, #fbbf24, #fef08a);
+  box-shadow: 0 0 50px rgba(251, 191, 36, 0.6);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+}
+html.light .sun-disc::after {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  border-radius: 999px;
+  border: 1px solid rgba(252, 211, 77, 0.4);
+}
+@media (min-width: 768px) {
+  html.light .sun-disc {
+    right: 6rem;
+    width: 7rem;
+    height: 7rem;
+  }
+}
+.birds { display: none; }
+html.light .birds {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  opacity: 0.5;
+}
+.bird { animation: fly 18s linear infinite; }
+.bird-2 { animation: fly 24s linear infinite; animation-delay: 3s; }
+.bird-3 { animation: fly 20s linear infinite; animation-delay: 6s; }
+@keyframes fly {
+  0% { transform: translateX(-100px) translateY(0); }
+  50% { transform: translateX(500px) translateY(-15px); }
+  100% { transform: translateX(1100px) translateY(0); }
+}
+html.light .marquee { border-color: rgba(226,232,240,1); }
+html.light .marquee-track { color: #334155; }
+html.light .btn-white { background: #0f172a; color: #fff; }

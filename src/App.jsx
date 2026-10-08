@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Tilt from 'react-parallax-tilt'
 import Cursor from './Cursor'
+import ThemeToggle from './ThemeToggle'
 import BlurRain from './BlurRain'
 import DogGuide from './DogGuide'
 
@@ -41,6 +42,7 @@ export default function App() {
       <Cursor />
       <BlurRain />
       <DogGuide />
+      <ThemeToggle />
 
       <section className="hero-section">
         <video className="bg" autoPlay muted loop playsInline>
@@ -155,8 +157,16 @@ export default function App() {
       </main>
 
       <footer className="site-footer">
-        <div
-          className="footer-sky"
+        <div className="sun-glow" />
+        <div className="sun-disc" />
+        <div className="birds">
+          <svg className="w-full h-full" viewBox="0 0 1000 400" preserveAspectRatio="none" style={{ width: '100%', height: '100%' }}>
+            <path className="bird" d="M 100 80 Q 110 70 120 80 Q 130 70 140 80" stroke="#78350F" strokeWidth="1.5" fill="none" />
+            <path className="bird bird-2" d="M 180 110 Q 188 102 196 110 Q 204 102 212 110" stroke="#78350F" strokeWidth="1.2" fill="none" />
+            <path className="bird bird-3" d="M 60 150 Q 68 142 76 150 Q 84 142 92 150" stroke="#78350F" strokeWidth="1" fill="none" />
+          </svg>
+        </div>
+        <div className="footer-sky"
           style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '50%', zIndex: 1, pointerEvents: 'none' }}
         >
           {Array.from({ length: 40 }).map((_, i) => (
@@ -227,7 +237,17 @@ export default function App() {
         </div>
 
         <div className="footer-cta">
-          <a href="mailto:namansaini252007@gmail.com" className="btn btn-white">GET IN TOUCH →</a>
+          <a
+            href="mailto:namansaini252007@gmail.com"
+            type="button"
+            className="relative z-20 px-8 py-3.5 rounded-full font-bold text-sm tracking-wide transition-all duration-300 shadow-xl hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer bg-slate-900 dark:bg-white"
+            style={{ color: '#0f172a', background: '#ffffff', borderRadius: '999px', padding: '0.875rem 2rem', fontWeight: 700, fontSize: '0.875rem', letterSpacing: '0.05em', boxShadow: '0 20px 25px rgba(0,0,0,0.15)', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', border: 'none', cursor: 'pointer', textDecoration: 'none', transition: 'transform 0.3s' }}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+          >
+            <span className="cta-text" style={{ color: '#0f172a', visibility: 'visible', opacity: 1 }}>GET IN TOUCH</span>
+            <span className="cta-text" style={{ color: '#0f172a', visibility: 'visible', opacity: 1, fontSize: '1.1rem' }}>→</span>
+          </a>
         </div>
 
         <div className="footer-bar">
