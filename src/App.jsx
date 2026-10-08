@@ -3,7 +3,6 @@ import Tilt from 'react-parallax-tilt'
 import Cursor from './Cursor'
 import BlurRain from './BlurRain'
 import DogGuide from './DogGuide'
-import BackgroundLines from './BackgroundLines'
 
 const services = [
   'Frontend Development',
@@ -75,16 +74,17 @@ export default function App() {
       </section>
 
       <main className="body-section">
-      <BackgroundLines />
       <div className="container">
         <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} glareEnable glareMaxOpacity={0.25} glareColor="#ffffff" glareBorderRadius="18px" transitionSpeed={1500}>
-        <section id="about" className="glass">
+        <section id="about" className="glass" style={{ position: 'relative', zIndex: 10 }}>
+          <div style={{ position: 'relative', zIndex: 10 }}>
           <h2>About Me</h2>
           <p>
             I believe great work comes from clean code and a strong eye for
             design. I can take a project from a rough idea to a fully working
             website, handling the details along the way.
           </p>
+          </div>
         </section>
         </Tilt>
 
@@ -155,24 +155,42 @@ export default function App() {
       </main>
 
       <footer className="site-footer">
-        <div className="footer-sky">
-          {Array.from({ length: 35 }).map((_, i) => (
-            <span
+        <div
+          className="footer-sky"
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '50%', zIndex: 1, pointerEvents: 'none' }}
+        >
+          {Array.from({ length: 40 }).map((_, i) => (
+            <div
               key={i}
-              className="star-dot"
               style={{
-                width: i % 3 === 0 ? '6px' : '4px',
-                height: i % 3 === 0 ? '6px' : '4px',
-                left: `${(i * 29) % 100}%`,
-                top: `${(i * 17) % 48}%`,
-                animationDuration: `${1 + (i % 5) * 0.5}s`,
-                animationDelay: `${(i * 0.31) % 3}s`,
+                position: 'absolute',
+                top: `${(i * 17) % 95}%`,
+                left: `${(i * 29) % 98}%`,
+                width: `${(i % 3) + 2}px`,
+                height: `${(i % 3) + 2}px`,
+                backgroundColor: '#FFFFFF',
+                borderRadius: '50%',
+                boxShadow: '0 0 8px #FFFFFF',
+                animation: `twinkle ${1.5 + (i % 5) * 0.4}s infinite ease-in-out ${(i * 0.23) % 2}s`,
               }}
             />
           ))}
-          <span className="shooting" style={{ top: '8%', left: '70%', animationDelay: '0s' }} />
-          <span className="shooting" style={{ top: '18%', left: '85%', animationDelay: '1.7s' }} />
-          <span className="shooting" style={{ top: '4%', left: '45%', animationDelay: '3.4s' }} />
+          {[0, 1, 2].map((i) => (
+            <div
+              key={`s${i}`}
+              style={{
+                position: 'absolute',
+                top: `${10 + i * 9}%`,
+                right: `${8 + i * 20}%`,
+                width: '140px',
+                height: '1px',
+                background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(56,189,248,0.6) 60%, rgba(255,255,255,0.9) 100%)',
+                boxShadow: '0 0 6px rgba(255,255,255,0.8)',
+                transform: 'rotate(-35deg)',
+                animation: `shootingStar 10s infinite ease-in-out ${i * 3.2}s`,
+              }}
+            />
+          ))}
         </div>
         <div className="stars" />
         <div className="moon" />
@@ -223,3 +241,4 @@ export default function App() {
     </>
   )
 }
+
