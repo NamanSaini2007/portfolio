@@ -103,7 +103,6 @@ export default function App() {
         </section>
 
         <section id="skills">
-          <h2>What I Can Do</h2>
           <SkillGallery />
         </section>
 

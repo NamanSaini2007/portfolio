@@ -90,7 +90,6 @@ section, footer#contact {
   color: #d1d5db;
   padding: 2rem 0 2rem;
   position: relative;
-  overflow: hidden;
 }
 
 @media (min-width: 768px) {
@@ -423,101 +422,146 @@ section p, footer p {
   margin-bottom: 0.4rem;
 }
 
-.skill-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin-top: 1.5rem;
+.skills-tag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #10B981;
+  margin-bottom: 0.5rem;
 }
 
-@media (min-width: 640px) {
-  .skill-grid {
-    grid-template-columns: repeat(3, 1fr);
+.skills-headline {
+  font-size: 1.875rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .skills-headline {
+    font-size: 2.25rem;
   }
 }
 
-@media (min-width: 1024px) {
-  .skill-grid {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1.5rem;
-  }
+html.light .skills-headline {
+  color: #0f172a;
 }
 
-.skill-tile {
+.skills-sticky-wrap {
   position: relative;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+}
+
+.skills-sticky-header {
+  position: sticky;
+  top: 2.5rem;
+  z-index: 20;
+  padding-bottom: 2rem;
+  text-align: center;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.skills-stack {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.skill-sticky-slot {
+  position: sticky;
+  top: 8rem;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 7rem;
-  padding: 1rem;
-  border-radius: 0.75rem;
-  background: rgba(16, 185, 129, 0.05);
-  border: none;
-  border-bottom: 2px solid transparent;
-  transition: all 0.3s ease;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
-.skill-tile:hover {
-  background: rgba(16, 185, 129, 0.1);
-  border-bottom-color: #10B981;
-  box-shadow: none;
-  transform: translateY(-4px);
+.skill-stack-card {
+  width: 100%;
+  max-width: 48rem;
+  transform-origin: top center;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  background: rgba(23, 23, 23, 0.9);
+  border: 1px solid rgba(38, 38, 38, 1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.3s ease;
 }
 
-.skill-tile-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+@media (min-width: 768px) {
+  .skill-stack-card {
+    padding: 2.5rem;
+  }
 }
 
-.skill-tile-icon {
+.skill-stack-card:hover {
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.skill-stack-card p {
+  max-width: 36rem;
+}
+
+.skill-num {
+  display: block;
   font-size: 1.5rem;
   font-weight: 800;
-  color: #10B981;
+  letter-spacing: 0.05em;
+  color: #34D399;
+  margin-bottom: 1rem;
 }
 
-.skill-dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 999px;
-  background: rgba(16, 185, 129, 0.4);
-  transition: all 0.3s ease;
+.skill-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
-.skill-tile:hover .skill-dot {
-  background: #10B981;
-  transform: scale(1.25);
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+.skill-card-icon {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
 }
 
-.skill-tile h4 {
-  font-size: 0.875rem;
+.skill-card h3 {
+  font-size: 1.25rem;
   font-weight: 700;
   color: #fff;
 }
 
-.skill-tile p {
-  font-size: 11px;
+.skill-card p {
+  font-size: 0.875rem;
+  line-height: 1.6;
   color: #a3a3a3;
-  margin-top: 0.125rem;
 }
 
-html.light .skill-tile {
-  background: rgba(16, 185, 129, 0.05);
-  border-bottom: 2px solid transparent;
+html.light .skill-stack-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: #e2e8f0;
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.12);
 }
 
-html.light .skill-tile:hover {
-  background: rgba(16, 185, 129, 0.1);
-  border-bottom-color: #10B981;
+html.light .skill-stack-card:hover {
+  border-color: rgba(16, 185, 129, 0.35);
 }
 
-html.light .skill-tile h4 {
+html.light .skill-num {
+  color: #059669;
+}
+
+html.light .skill-card-icon,
+html.light .skill-card h3 {
   color: #0f172a;
 }
 
-html.light .skill-tile p {
-  color: #64748b;
+html.light .skill-card p {
+  color: #475569;
 }
 
 .about-section {
@@ -846,14 +890,14 @@ html.light .btn-send:hover {
 .dog-bubble.dark {
   background: rgba(23, 23, 23, 0.8);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.25);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
 }
 
 .dog-bubble.light {
   background: rgba(23, 23, 23, 0.8);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.25);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
 }
 
@@ -895,8 +939,6 @@ html.light .btn-send:hover {
 }
 
 .dog-anim {
-  width: 6rem;
-  height: 6rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -904,23 +946,64 @@ html.light .btn-send:hover {
   user-select: none;
   background: transparent;
   border: none;
-  transition: transform 0.3s ease;
-}
-
-@media (min-width: 768px) {
-  .dog-anim {
-    width: 7rem;
-    height: 7rem;
-  }
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dog-anim:hover {
-  transform: scale(1.1) rotate(3deg);
+  transform: scale(1.1);
 }
 
 .dog-anim:active {
   transform: scale(0.95);
 }
+
+.patuti-svg {
+  width: 6rem;
+  height: 6rem;
+  overflow: visible;
+}
+
+@media (min-width: 768px) {
+  .patuti-svg {
+    width: 7rem;
+    height: 7rem;
+  }
+}
+
+.patuti-float {
+  animation: floatPug 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes floatPug {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(1.5deg); }
+}
+
+.pug-eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mascotBlink 4.5s infinite;
+}
+
+@keyframes mascotBlink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+.pug-tongue {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: mascotPant 1.4s ease-in-out infinite;
+}
+
+@keyframes mascotPant {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.15); }
+}
+
+
 
 .dog-show {
   font-size: 1.5rem;

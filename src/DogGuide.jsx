@@ -1,17 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import Pug3D from './Pug3D'
+import PatutiSvg from './PatutiSvg'
 
-const GREETINGS = [
-  "Hi, I'm Patuti! 🐶 I run this portfolio, Naman just writes the code.",
-  "Woof! I'm Patuti. Nice to meet you! Let me show you around before I take a nap.",
-  "Hey there! Patuti at your service. Click around and I'll spill Naman's secrets!",
-  "Welcome! I'm Patuti. Naman told me to be on my best behavior today.",
-  "Hi, I'm Patuti! 🐾 Ready to check out some cool projects?",
+const PATUTI_QUOTES = [
+  "Hey! Myself Patuti 🐾",
+  "Howz u doin broo? 😎",
+  "Patuti here to help! 🚀",
+  "Let's build something epic! ✨",
+  "Drop a line or say hi to Naman!",
+  "It's me, Patuti! What's up? 🔥",
 ]
 
 const getHoverMessage = (target) => {
-  const el = target.closest('a, button, input, textarea, .skill-tile, #experience, .badge')
+  const el = target.closest('a, button, input, textarea, .skill-stack-card, #experience, .badge')
   if (!el) return null
 
   if (el.closest('nav') && el.tagName === 'A') {
@@ -21,8 +22,8 @@ const getHoverMessage = (target) => {
   if (el.matches('a[href="#skills"].btn')) return "Click to explore Naman's featured work and tech stack!"
   if (el.matches('a[download]')) return "Click here to open/download Naman's PDF resume!"
   if (el.id === 'experience' || el.closest('#experience')) return 'Naman built production React & TypeScript UI components during his internship here!'
-  if (el.matches('.skill-tile')) {
-    const t = el.querySelector('h4')
+  if (el.matches('.skill-stack-card')) {
+    const t = el.querySelector('h3')
     return `Naman uses ${t ? t.textContent.trim() : 'this skill'} for building production web apps!`
   }
   if (el.matches('input, textarea')) return `Type your ${el.name || 'details'} here to message Naman directly!`
@@ -42,10 +43,24 @@ const SECTION_HINTS = [
 ]
 
 export default function DogGuide() {
-  const [sectionMsg, setSectionMsg] = useState(() => GREETINGS[Math.floor(Math.random() * GREETINGS.length)])
+  const [sectionMsg, setSectionMsg] = useState(() => PATUTI_QUOTES[Math.floor(Math.random() * PATUTI_QUOTES.length)])
   const [message, setMessage] = useState(sectionMsg)
   const [minimized, setMinimized] = useState(false)
   const [theme, setTheme] = useState('dark')
+  const quoteIndex = useRef(0)
+  const hovering = useRef(false)
+
+  const cycleQuote = () => {
+    quoteIndex.current = (quoteIndex.current + 1) % PATUTI_QUOTES.length
+    setMessage(PATUTI_QUOTES[quoteIndex.current])
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!hovering.current) cycleQuote()
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [])
 
   useEffect(() => {
     const guide = document.querySelector('.dog-guide')
@@ -70,11 +85,17 @@ export default function DogGuide() {
   useEffect(() => {
     const onOver = (e) => {
       const msg = getHoverMessage(e.target)
-      if (msg) setMessage(msg)
+      if (msg) {
+        hovering.current = true
+        setMessage(msg)
+      }
     }
     const onOut = (e) => {
       const msg = getHoverMessage(e.target)
-      if (msg) setMessage(sectionMsg)
+      if (msg) {
+        hovering.current = false
+        setMessage(PATUTI_QUOTES[quoteIndex.current])
+      }
     }
     window.addEventListener('mouseover', onOver)
     window.addEventListener('mouseout', onOut)
@@ -119,14 +140,16 @@ export default function DogGuide() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
             key={message}
+            onClick={cycleQuote}
+            style={{ cursor: 'pointer' }}
           >
             {message}
           </motion.div>
         )}
       </AnimatePresence>
       {!minimized && (
-        <div className="dog-anim" onClick={() => setMinimized(true)}>
-          <Pug3D />
+        <div className="dog-anim" onClick={cycleQuote}>
+          <PatutiSvg />
         </div>
       )}
       {minimized && <button className="dog-show" onClick={() => setMinimized(false)}>🐶</button>}

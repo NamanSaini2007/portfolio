@@ -1,26 +1,63 @@
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+
 const SKILLS = [
-  { title: 'TypeScript', sub: 'Type-Safe Engineering', mono: 'TS' },
-  { title: 'React', sub: 'Frontend Architecture', mono: '⚛' },
-  { title: 'UI / UX', sub: 'Intuitive Experiences', mono: '✦' },
-  { title: 'Tailwind CSS', sub: 'Utility-First Styling', mono: '≋' },
-  { title: 'Responsive Design', sub: 'Every Screen, Perfect', mono: '▦' },
+  { num: '01', title: 'TypeScript', desc: 'Type-safe engineering with scalable architecture and clean code standards.', mono: 'TS' },
+  { num: '02', title: 'React', desc: 'Component-driven UIs with fast, interactive experiences.', mono: '⚛' },
+  { num: '03', title: 'UI / UX', desc: 'Clean, intuitive interfaces designed around the user.', mono: '✦' },
+  { num: '04', title: 'Tailwind CSS', desc: 'Rapid utility-first styling that scales with the project.', mono: '≋' },
+  { num: '05', title: 'Responsive Design', desc: 'Pixel-perfect layouts on every screen size.', mono: '▦' },
 ]
 
-export default function SkillGallery() {
+function StackCard({ skill, index, totalCount, progress }) {
+  const cardScale = useTransform(
+    progress,
+    [index / totalCount, 1],
+    [1, 1 - (totalCount - index) * 0.03]
+  )
+
   return (
-    <div className="skill-grid">
-      {SKILLS.map((s) => (
-        <div className="skill-tile" key={s.title}>
-          <div className="skill-tile-top">
-            <span className="skill-tile-icon">{s.mono}</span>
-            <span className="skill-dot" />
-          </div>
-          <div>
-            <h4>{s.title}</h4>
-            <p>{s.sub}</p>
-          </div>
+    <div className="skill-sticky-slot">
+      <motion.div
+        style={{ scale: cardScale, zIndex: index + 1 }}
+        className="skill-stack-card"
+      >
+        <span className="skill-num">{skill.num}</span>
+        <div className="skill-card-head">
+          <span className="skill-card-icon">{skill.mono}</span>
+          <h3>{skill.title}</h3>
         </div>
-      ))}
+        <p>{skill.desc}</p>
+      </motion.div>
+    </div>
+  )
+}
+
+export default function SkillGallery() {
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  })
+
+  return (
+    <div ref={containerRef} className="skills-sticky-wrap">
+      <div className="skills-sticky-header">
+        <p className="skills-tag">Capabilities</p>
+        <h2 className="skills-headline">Skills &amp; Stack engineered for speed.</h2>
+      </div>
+
+      <div className="skills-stack">
+        {SKILLS.map((skill, index) => (
+          <StackCard
+            key={skill.num}
+            skill={skill}
+            index={index}
+            totalCount={SKILLS.length}
+            progress={scrollYProgress}
+          />
+        ))}
+      </div>
     </div>
   )
 }
