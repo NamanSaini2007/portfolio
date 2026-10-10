@@ -11,7 +11,7 @@ const GREETINGS = [
 ]
 
 const getHoverMessage = (target) => {
-  const el = target.closest('a, button, input, textarea, .chip, #experience, .badge')
+  const el = target.closest('a, button, input, textarea, .skill-tile, #experience, .badge')
   if (!el) return null
 
   if (el.closest('nav') && el.tagName === 'A') {
@@ -21,7 +21,10 @@ const getHoverMessage = (target) => {
   if (el.matches('a[href="#skills"].btn')) return "Click to explore Naman's featured work and tech stack!"
   if (el.matches('a[download]')) return "Click here to open/download Naman's PDF resume!"
   if (el.id === 'experience' || el.closest('#experience')) return 'Naman built production React & TypeScript UI components during his internship here!'
-  if (el.matches('.chip')) return `Naman uses ${el.textContent.trim()} for building production web apps!`
+  if (el.matches('.skill-tile')) {
+    const t = el.querySelector('h4')
+    return `Naman uses ${t ? t.textContent.trim() : 'this skill'} for building production web apps!`
+  }
   if (el.matches('input, textarea')) return `Type your ${el.name || 'details'} here to message Naman directly!`
   if (el.closest('.links, .footer-links')) {
     const name = el.textContent.toLowerCase().includes('github') ? 'GitHub' : 'LinkedIn'
@@ -121,7 +124,11 @@ export default function DogGuide() {
           </motion.div>
         )}
       </AnimatePresence>
-      {!minimized && <Pug3D />}
+      {!minimized && (
+        <div className="dog-anim" onClick={() => setMinimized(true)}>
+          <Pug3D />
+        </div>
+      )}
       {minimized && <button className="dog-show" onClick={() => setMinimized(false)}>🐶</button>}
     </div>
   )

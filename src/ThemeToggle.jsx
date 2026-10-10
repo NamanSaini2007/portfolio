@@ -19,7 +19,7 @@ export default function ThemeToggle() {
       style={{
         position: 'fixed',
         bottom: '1.5rem',
-        right: '1.5rem',
+        left: '1.5rem',
         zIndex: 60,
         padding: '0.9rem',
         borderRadius: '999px',

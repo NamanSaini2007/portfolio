@@ -1,17 +1,9 @@
 import { useState } from 'react'
-import Tilt from 'react-parallax-tilt'
 import Cursor from './Cursor'
 import ThemeToggle from './ThemeToggle'
+import SkillGallery from './SkillGallery'
 import BlurRain from './BlurRain'
 import DogGuide from './DogGuide'
-
-const services = [
-  'Frontend Development',
-  'TypeScript & React',
-  'UI / UX Design',
-  'Responsive Websites',
-  'Modern Web Experiences',
-]
 
 export default function App() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -77,81 +69,85 @@ export default function App() {
 
       <main className="body-section">
       <div className="container">
-        <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} glareEnable glareMaxOpacity={0.25} glareColor="#ffffff" glareBorderRadius="18px" transitionSpeed={1500}>
-        <section id="about" className="glass" style={{ position: 'relative', zIndex: 10 }}>
-          <div style={{ position: 'relative', zIndex: 10 }}>
-          <h2>About Me</h2>
-          <p>
-            I believe great work comes from clean code and a strong eye for
-            design. I can take a project from a rough idea to a fully working
-            website, handling the details along the way.
-          </p>
+        <section id="about" className="about-section">
+          <div className="about-grid">
+            <div className="about-side">
+              <h2>About Me</h2>
+              <p className="focal-badge">Full-Stack Craftsman</p>
+            </div>
+            <div className="about-main">
+              <p>
+                I believe great work comes from <mark>clean code</mark> and a strong eye for
+                design. I can take a project from a rough idea to a fully working
+                website — <mark>polished products</mark>, handling the details along the way.
+              </p>
+            </div>
           </div>
         </section>
-        </Tilt>
 
-        <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} glareEnable glareMaxOpacity={0.25} glareColor="#ffffff" glareBorderRadius="18px" transitionSpeed={1500}>
-        <section id="experience" className="glass">
+        <section id="experience">
           <h2>Experience</h2>
-          <div className="exp-head">
-            <h3>Web Development Intern</h3>
-            <span className="badge">Sirius AI</span>
+          <div className="timeline">
+            <div className="timeline-item">
+              <div className="exp-head">
+                <h3>Web Development Intern</h3>
+                <span className="badge">Sirius AI</span>
+              </div>
+              <ul>
+                <li>Developed and optimized responsive UI components using React and TypeScript.</li>
+                <li>Integrated backend REST APIs and improved user experience across main features.</li>
+                <li>Collaborated with cross-functional team members to ship clean, production-ready code.</li>
+              </ul>
+            </div>
           </div>
-          <ul>
-            <li>Developed and optimized responsive UI components using React and TypeScript.</li>
-            <li>Integrated backend REST APIs and improved user experience across main features.</li>
-            <li>Collaborated with cross-functional team members to ship clean, production-ready code.</li>
-          </ul>
         </section>
-        </Tilt>
 
-        <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} glareEnable glareMaxOpacity={0.25} glareColor="#ffffff" glareBorderRadius="18px" transitionSpeed={1500}>
-        <section id="skills" className="glass">
+        <section id="skills">
           <h2>What I Can Do</h2>
-          <div className="skills">
-            {services.map((s) => (
-              <span className="chip" key={s}>{s}</span>
-            ))}
-          </div>
+          <SkillGallery />
         </section>
-        </Tilt>
 
-        <footer id="contact" className="glass">
-          <h2>Let's Build Something</h2>
-          <p>Have an idea? I'd love to hear about it.</p>
+        <footer id="contact" className="contact-section">
+          <div className="contact-grid">
+            <div className="contact-intro">
+              <h2>Let's <span className="accent">Build</span> Something.</h2>
+              <p>Have a project in mind or want to collaborate? Send a message and let's bring it to life.</p>
+            </div>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              required
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              required
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-            />
-            <textarea
-              name="message"
-              placeholder="Message"
-              rows="4"
-              required
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-            />
-            <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
-              {status === 'sending' ? 'Sending…' : 'Send Message'}
-            </button>
-            {status === 'success' && <p className="form-msg success">Thanks! Your message has been sent.</p>}
-            {status === 'error' && <p className="form-msg error">Something went wrong. Please try again.</p>}
-          </form>
-
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="form-row">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  required
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  required
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                />
+              </div>
+              <textarea
+                name="message"
+                placeholder="Message"
+                rows="4"
+                required
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+              />
+              <button type="submit" className="btn-send" disabled={status === 'sending'}>
+                {status === 'sending' ? 'Sending…' : 'Send Message'}
+              </button>
+              {status === 'success' && <p className="form-msg success">Thanks! Your message has been sent.</p>}
+              {status === 'error' && <p className="form-msg error">Something went wrong. Please try again.</p>}
+            </form>
+          </div>
         </footer>
       </div>
       </main>

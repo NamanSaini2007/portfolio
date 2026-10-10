@@ -54,7 +54,13 @@ html {
   display: flex;
   align-items: center;
   padding-top: 2rem;
-  padding-bottom: 6rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .hero-container {
+    padding-bottom: 4rem;
+  }
 }
 
 .hero {
@@ -70,21 +76,27 @@ html {
 }
 
 section, footer#contact {
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
 }
 
 @media (min-width: 768px) {
   section, footer#contact {
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
   }
 }
 
 .body-section {
   background: #0A0D14;
   color: #d1d5db;
-  padding: 4rem 0 2rem;
+  padding: 2rem 0 2rem;
   position: relative;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .body-section {
+    padding-top: 3rem;
+  }
 }
 
 .body-section h2 {
@@ -98,12 +110,12 @@ section, footer#contact {
 }
 
 section {
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
 }
 
 @media (min-width: 768px) {
   section {
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
   }
 }
 
@@ -147,7 +159,6 @@ footer#contact {
   padding: 1.5rem 2rem;
   box-shadow: 0 4px 25px rgba(16, 185, 129, 0.08);
   color: #d4d4d4;
-  max-width: 56rem;
   margin-left: auto;
   margin-right: auto;
   transition: all 0.3s ease;
@@ -169,34 +180,23 @@ footer#contact {
   border: 1px solid rgba(16, 185, 129, 0.15);
 }
 
-.body-section .chip {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: background 0.2s, transform 0.2s;
-}
-
-.body-section .chip:hover {
-  background: rgba(16, 185, 129, 0.15);
-  transform: translateY(-2px);
-}
-
 .body-section .contact-form input,
 .body-section .contact-form textarea {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   color: #fff;
 }
 
 .body-section .contact-form input::placeholder,
 .body-section .contact-form textarea::placeholder {
-  color: #6b7280;
+  color: rgba(255, 255, 255, 0.35);
 }
 
 .body-section .contact-form input:focus,
 .body-section .contact-form textarea:focus {
-  border-color: #10B981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+  border-color: #34D399;
+  box-shadow: none;
 }
 
 .body-section .btn-primary {
@@ -301,9 +301,24 @@ body {
 .container {
   position: relative;
   z-index: 10;
-  max-width: 900px;
+  width: 100%;
+  max-width: 80rem;
   margin: 0 auto;
-  padding: 4rem 1.25rem 4rem;
+  padding: 4rem 1rem 4rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
 }
 
 .glass {
@@ -408,18 +423,154 @@ section p, footer p {
   margin-bottom: 0.4rem;
 }
 
-.skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
-.chip {
-  padding: 0.5rem 1rem;
+@media (min-width: 640px) {
+  .skill-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .skill-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.skill-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 7rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: rgba(16, 185, 129, 0.05);
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.skill-tile:hover {
+  background: rgba(16, 185, 129, 0.1);
+  border-bottom-color: #10B981;
+  box-shadow: none;
+  transform: translateY(-4px);
+}
+
+.skill-tile-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skill-tile-icon {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #10B981;
+}
+
+.skill-dot {
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 0.9rem;
+  background: rgba(16, 185, 129, 0.4);
+  transition: all 0.3s ease;
+}
+
+.skill-tile:hover .skill-dot {
+  background: #10B981;
+  transform: scale(1.25);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+}
+
+.skill-tile h4 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.skill-tile p {
+  font-size: 11px;
+  color: #a3a3a3;
+  margin-top: 0.125rem;
+}
+
+html.light .skill-tile {
+  background: rgba(16, 185, 129, 0.05);
+  border-bottom: 2px solid transparent;
+}
+
+html.light .skill-tile:hover {
+  background: rgba(16, 185, 129, 0.1);
+  border-bottom-color: #10B981;
+}
+
+html.light .skill-tile h4 {
+  color: #0f172a;
+}
+
+html.light .skill-tile p {
+  color: #64748b;
+}
+
+.about-section {
+  padding: 1.5rem 0;
+}
+
+@media (min-width: 768px) {
+  .about-section {
+    padding: 2rem 0;
+  }
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .about-grid {
+    grid-template-columns: 4fr 8fr;
+    gap: 2.5rem;
+  }
+}
+
+.about-side h2 {
+  margin-bottom: 0.5rem;
+}
+
+.focal-badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #10B981;
+}
+
+.about-main h2 {
+  margin-bottom: 1rem;
+}
+
+.about-main mark {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  font-weight: 600;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+}
+
+html.light .about-main mark {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
 }
 
 .links {
@@ -487,46 +638,176 @@ section p, footer p {
   border-color: rgba(255, 255, 255, 0.6);
 }
 
+.contact-section {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto 1rem;
+  padding: 0;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 4fr 8fr;
+    gap: 3rem;
+  }
+}
+
+.contact-intro h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.contact-intro .accent {
+  color: #34D399;
+}
+
+html.light .contact-intro .accent {
+  color: #10B981;
+}
+
+.contact-intro p {
+  max-width: 28rem;
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
-  margin: 1.5rem 0;
+  gap: 1.25rem;
+  margin: 0;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
 }
 
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  padding: 0.85rem 1.1rem;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.75rem 0.25rem;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0;
+  background: transparent;
   color: #fff;
   font: inherit;
+  font-size: 0.875rem;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: none;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form textarea {
+  height: 2.5rem;
+  overflow: hidden;
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.35);
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
+  border-color: #34D399;
+  box-shadow: none;
+  transform: none;
 }
 
-.contact-form button {
-  align-self: flex-start;
+.contact-form textarea:focus,
+.contact-form textarea:not(:placeholder-shown) {
+  height: 8rem;
+  overflow-y: auto;
+}
+
+.btn-send {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  margin-top: 1rem;
   border: none;
+  border-radius: 999px;
+  background: #fff;
+  color: #0f172a;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  width: 100%;
 }
 
-.contact-form button:disabled {
+@media (min-width: 768px) {
+  .btn-send {
+    width: auto;
+  }
+}
+
+.btn-send:hover {
+  background: #10B981;
+  color: #fff;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.btn-send:active {
+  transform: scale(0.95);
+}
+
+.btn-send:disabled {
   opacity: 0.6;
   cursor: wait;
+  transform: none;
+}
+
+html.light .contact-form input,
+html.light .contact-form textarea {
+  border-bottom: 2px solid rgba(120, 53, 15, 0.12);
+  background: transparent;
+  color: #0f172a;
+}
+
+html.light .contact-form input::placeholder,
+html.light .contact-form textarea::placeholder {
+  color: rgba(100, 116, 139, 0.7);
+}
+
+html.light .contact-form input:focus,
+html.light .contact-form textarea:focus {
+  border-color: #F59E0B;
+  box-shadow: none;
+}
+
+html.light .btn-send {
+  background: #0f172a;
+  color: #fff;
+}
+
+html.light .btn-send:hover {
+  background: #10B981;
+  color: #fff;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
 }
 
 .form-msg.success {
@@ -540,7 +821,7 @@ section p, footer p {
 .dog-guide {
   position: fixed;
   bottom: 1.5rem;
-  right: 6rem;
+  right: 1.5rem;
   transform: scale(0.9);
   transform-origin: bottom right;
   transition: bottom 0.3s ease-out;
@@ -611,6 +892,34 @@ section p, footer p {
   color: #fff;
   font-size: 0.7rem;
   cursor: pointer;
+}
+
+.dog-anim {
+  width: 6rem;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  background: transparent;
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .dog-anim {
+    width: 7rem;
+    height: 7rem;
+  }
+}
+
+.dog-anim:hover {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.dog-anim:active {
+  transform: scale(0.95);
 }
 
 .dog-show {
@@ -1015,18 +1324,16 @@ html.light body { background: #FAF8F5; color: #0f172a; }
 html.light .body-section { background: #FAF8F5; color: #475569; }
 html.light .body-section h2 { color: #0f172a; }
 html.light .body-section p, html.light .body-section li, html.light .body-section h3 { color: #475569; }
-html.light .body-section .glass { background: rgba(255,255,255,0.8); border: 1px solid rgba(245,158,11,0.2); box-shadow: 0 4px 25px rgba(245,158,11,0.06); color: #475569; }
+html.light .body-section .glass { background: rgba(255,255,255,0.8); border: 1px solid rgba(16,185,129,0.2); box-shadow: 0 4px 25px rgba(16,185,129,0.10); color: #475569; }
 html.light .body-section section.glass:hover,
 html.light .body-section footer.glass:hover {
-  border-color: rgba(245,158,11,0.4);
-  box-shadow: 0 8px 30px rgba(245,158,11,0.15);
+  border-color: rgba(16,185,129,0.4);
+  box-shadow: 0 8px 30px rgba(16,185,129,0.20);
 }
-html.light .body-section .chip { background: rgba(245,158,11,0.1); color: #92400e; border: 1px solid rgba(245,158,11,0.3); }
-html.light .body-section .chip:hover { background: rgba(245,158,11,0.2); }
-html.light .body-section .badge { background: rgba(245,158,11,0.12); color: #b45309; border: 1px solid rgba(245,158,11,0.3); }
+html.light .body-section .badge { background: rgba(16,185,129,0.12); color: #047857; border: 1px solid rgba(16,185,129,0.3); }
 html.light .body-section .contact-form input:focus,
-html.light .body-section .contact-form textarea:focus { border-color: #F59E0B; box-shadow: 0 0 0 3px rgba(245,158,11,0.15); }
-html.light .body-section .contact-form input, html.light .body-section .contact-form textarea { background: #fff; border: 1px solid #cbd5e1; color: #0f172a; }
+html.light .body-section .contact-form textarea:focus { border-color: #10B981; background: transparent; color: #0f172a; box-shadow: none; }
+html.light .body-section .contact-form input, html.light .body-section .contact-form textarea { background: transparent; border: none; border-bottom: 1px solid #cbd5e1; color: #0f172a; }
 html.light .body-section .contact-form input::placeholder, html.light .body-section .contact-form textarea::placeholder { color: #94a3b8; }
 html.light .body-section .btn-primary { background: #0f172a; color: #fff; }
 html.light .body-section .links a { color: #0f172a; border: 1px solid #cbd5e1; background: rgba(255,255,255,0.6); }
@@ -1040,7 +1347,7 @@ html.light .footer-sky, html.light .stars, html.light .moon, html.light .mist { 
 html.light .sun-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at top right, rgba(254, 243, 199, 0.5), rgba(255, 237, 213, 0.2), transparent 60%);
+  background: radial-gradient(ellipse at top right, rgba(167, 243, 208, 0.5), rgba(204, 251, 241, 0.2), transparent 60%);
   pointer-events: none;
 }
 .sun-glow { display: none; }
@@ -1054,8 +1361,8 @@ html.light .sun-disc {
   width: 5rem;
   height: 5rem;
   border-radius: 999px;
-  background: linear-gradient(to top right, #fbbf24, #fef08a);
-  box-shadow: 0 0 50px rgba(251, 191, 36, 0.6);
+  background: linear-gradient(to top right, #34d399, #99f6e0);
+  box-shadow: 0 0 50px rgba(16, 185, 129, 0.5);
   opacity: 0.9;
   pointer-events: none;
   z-index: 0;
@@ -1065,7 +1372,7 @@ html.light .sun-disc::after {
   position: absolute;
   inset: -25%;
   border-radius: 999px;
-  border: 1px solid rgba(252, 211, 77, 0.4);
+  border: 1px solid rgba(52, 211, 153, 0.4);
 }
 @media (min-width: 768px) {
   html.light .sun-disc {
@@ -1095,3 +1402,27 @@ html.light .birds {
 html.light .marquee { border-color: rgba(226,232,240,1); }
 html.light .marquee-track { color: #334155; }
 html.light .btn-white { background: #0f172a; color: #fff; }
+
+.timeline {
+  border-left: 2px solid rgba(16, 185, 129, 0.3);
+  padding-left: 1.5rem;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: calc(-1.5rem - 7px);
+  top: 0.35rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+}
