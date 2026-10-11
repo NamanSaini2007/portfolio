@@ -26,7 +26,10 @@ const getHoverMessage = (target) => {
     const t = el.querySelector('h3')
     return `Naman uses ${t ? t.textContent.trim() : 'this skill'} for building production web apps!`
   }
-  if (el.matches('input, textarea')) return `Type your ${el.name || 'details'} here to message Naman directly!`
+  if (el.matches('input, textarea')) {
+    const labels = { from_name: 'name', from_email: 'email', message: 'message' }
+    return `Type your ${labels[el.name] || 'details'} here to message Naman directly!`
+  }
   if (el.closest('.links, .footer-links')) {
     const name = el.textContent.toLowerCase().includes('github') ? 'GitHub' : 'LinkedIn'
     return `Click to check out Naman's ${name} profile!`

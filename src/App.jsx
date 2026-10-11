@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import emailjs from '@emailjs/browser'
 import Cursor from './Cursor'
 import ThemeToggle from './ThemeToggle'
 import SkillGallery from './SkillGallery'
@@ -8,23 +9,22 @@ import DogGuide from './DogGuide'
 export default function App() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState('idle')
+  const formRef = useRef(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
     try {
-      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(form),
-      })
-      if (res.ok) {
-        setStatus('success')
-        setForm({ name: '', email: '', message: '' })
-      } else {
-        setStatus('error')
-      }
-    } catch {
+      await emailjs.sendForm(
+        'service_c3033gl',
+        'template_8olrl0m',
+        formRef.current,
+        'k0hooeIHv49ASHfGl'
+      )
+      setStatus('success')
+      setForm({ name: '', email: '', message: '' })
+    } catch (err) {
+      console.error('EmailJS Error:', err)
       setStatus('error')
     }
   }
@@ -113,11 +113,11 @@ export default function App() {
               <p>Have a project in mind or want to collaborate? Send a message and let's bring it to life.</p>
             </div>
 
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <form ref={formRef} className="contact-form" onSubmit={handleSubmit}>
               <div className="form-row">
                 <input
                   type="text"
-                  name="name"
+                  name="from_name"
                   placeholder="Name"
                   required
                   value={form.name}
@@ -125,7 +125,7 @@ export default function App() {
                 />
                 <input
                   type="email"
-                  name="email"
+                  name="from_email"
                   placeholder="Email"
                   required
                   value={form.email}
