@@ -503,6 +503,61 @@ html.light .skills-headline {
   border-color: rgba(16, 185, 129, 0.25);
 }
 
+.skill-stack-card.skill-split {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .skill-stack-card.skill-split {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.skill-split-left {
+  flex: 1;
+}
+
+.skill-split-left p {
+  max-width: 28rem;
+}
+
+.skill-preview {
+  width: 100%;
+  height: 9rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 768px) {
+  .skill-preview {
+    width: 14rem;
+  }
+}
+
+.skill-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease-out;
+}
+
+.skill-stack-card:hover .skill-preview img {
+  transform: scale(1.05);
+}
+
+html.light .skill-preview {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
 .skill-stack-card p {
   max-width: 36rem;
 }
@@ -527,6 +582,61 @@ html.light .skills-headline {
   font-size: 1.5rem;
   font-weight: 800;
   color: #fff;
+  display: inline-block;
+  will-change: transform;
+}
+
+.anim-ts {
+  animation: tsGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes tsGlow {
+  0%, 100% { text-shadow: 0 0 4px rgba(255, 255, 255, 0.2); transform: scale(1); }
+  50% { text-shadow: 0 0 14px rgba(255, 255, 255, 0.8); transform: scale(1.08); }
+}
+
+.skill-card-icon.anim-ts:hover {
+  transform: rotate(12deg);
+}
+
+.anim-react {
+  animation: reactSpin 10s linear infinite;
+}
+
+@keyframes reactSpin {
+  to { transform: rotate(360deg); }
+}
+
+.anim-uiux {
+  animation: sparkleScale 3s ease-in-out infinite;
+}
+
+@keyframes sparkleScale {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.85; }
+  50% { transform: scale(1.25) rotate(15deg); opacity: 1; }
+}
+
+.anim-tailwind {
+  animation: waveDrift 2s ease-in-out infinite;
+}
+
+@keyframes waveDrift {
+  0%, 100% { transform: translateX(-3px); opacity: 0.8; }
+  50% { transform: translateX(3px); opacity: 1; }
+}
+
+.skill-card-icon.anim-tailwind:hover {
+  transform: translateX(4px);
+}
+
+.anim-responsive {
+  animation: screenPulse 3s ease-in-out infinite;
+}
+
+@keyframes screenPulse {
+  0%, 100% { transform: scaleX(1) scaleY(1); }
+  33% { transform: scaleX(1.2) scaleY(0.9); }
+  66% { transform: scaleX(0.9) scaleY(1.15); }
 }
 
 .skill-card h3 {
