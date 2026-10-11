@@ -6,7 +6,7 @@ A modern, responsive, and high-performance personal portfolio built with **React
 
 ## 📸 Preview
 
-![Portfolio Preview](/hero-preview.png)
+![Portfolio Preview](public/hero-preview.png)
 
 ---
 
