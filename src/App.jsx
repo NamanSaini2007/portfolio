@@ -4,7 +4,7 @@ import Cursor from './Cursor'
 import ThemeToggle from './ThemeToggle'
 import SkillGallery from './SkillGallery'
 import BlurRain from './BlurRain'
-import DogGuide from './DogGuide'
+import InterestsWidget from './InterestsWidget'
 
 export default function App() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -33,7 +33,7 @@ export default function App() {
     <>
       <Cursor />
       <BlurRain />
-      <DogGuide />
+      <InterestsWidget />
       <ThemeToggle />
 
       <section className="hero-section">
