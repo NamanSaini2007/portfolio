@@ -5,10 +5,12 @@ import ThemeToggle from './ThemeToggle'
 import SkillGallery from './SkillGallery'
 import BlurRain from './BlurRain'
 import InterestsWidget from './InterestsWidget'
+import ContactModal from './ContactModal'
 
 export default function App() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState('idle')
+  const [contactOpen, setContactOpen] = useState(false)
   const formRef = useRef(null)
 
   const handleSubmit = async (e) => {
@@ -232,17 +234,15 @@ export default function App() {
         </div>
 
         <div className="footer-cta">
-          <a
-            href="mailto:namansaini252007@gmail.com"
+          <button
             type="button"
-            className="relative z-20 px-8 py-3.5 rounded-full font-bold text-sm tracking-wide transition-all duration-300 shadow-xl hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer bg-slate-900 dark:bg-white"
-            style={{ color: '#0f172a', background: '#ffffff', borderRadius: '999px', padding: '0.875rem 2rem', fontWeight: 700, fontSize: '0.875rem', letterSpacing: '0.05em', boxShadow: '0 20px 25px rgba(0,0,0,0.15)', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', border: 'none', cursor: 'pointer', textDecoration: 'none', transition: 'transform 0.3s' }}
-            onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
-            onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+            className="footer-cta-btn"
+            onClick={() => setContactOpen(true)}
           >
-            <span className="cta-text" style={{ color: '#0f172a', visibility: 'visible', opacity: 1 }}>GET IN TOUCH</span>
-            <span className="cta-text" style={{ color: '#0f172a', visibility: 'visible', opacity: 1, fontSize: '1.1rem' }}>→</span>
-          </a>
+            <span>GET IN TOUCH</span>
+            <span style={{ fontSize: '1.1rem' }}>→</span>
+          </button>
+        <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
         </div>
 
         <div className="footer-bar">

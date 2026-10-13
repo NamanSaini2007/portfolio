@@ -1328,6 +1328,153 @@ html.light .footer-cta a span {
   color: #ffffff !important;
 }
 
+.modal-catcher {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+}
+
+.footer-cta {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-cta-btn {
+  position: relative;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.footer-cta-btn:hover {
+  transform: scale(1.05);
+  background: #e2e8f0;
+}
+
+.footer-cta-btn:active {
+  transform: scale(0.95);
+}
+
+html.light .footer-cta-btn {
+  background: #000000;
+  color: #ffffff;
+}
+
+html.light .footer-cta-btn:hover {
+  background: #1e293b;
+}
+
+.contact-anchor {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0.75rem;
+  z-index: 95;
+  width: 16rem;
+}
+
+.contact-tile {
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+.contact-tile h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  padding-right: 1.5rem;
+}
+
+.tile-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: #fff;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.tile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.tile-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  justify-content: center;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.tile-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+html.light .contact-tile {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #0f172a;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+}
+
+html.light .tile-close {
+  border-color: rgba(15, 23, 42, 0.2);
+  color: #0f172a;
+}
+
+html.light .tile-btn {
+  color: #0f172a;
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+html.light .tile-btn:hover {
+  background: rgba(15, 23, 42, 0.08);
+}
+
 .footer-bar {
   position: relative;
   z-index: 1;
