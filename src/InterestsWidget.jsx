@@ -11,6 +11,7 @@ const QUOTES = [
 export default function InterestsWidget() {
   const [open, setOpen] = useState(true)
   const [index, setIndex] = useState(0)
+  const [lift, setLift] = useState(24)
 
   useEffect(() => {
     if (!open) return
@@ -18,9 +19,21 @@ export default function InterestsWidget() {
     return () => clearInterval(id)
   }, [open ])
 
+  useEffect(() => {
+    const onScroll = () => {
+      const footer = document.querySelector('.site-footer')
+      if (!footer) return
+      const fTop = footer.getBoundingClientRect().top
+      setLift(Math.max(24, window.innerHeight - fTop + 24))
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   if (!open) {
     return (
-      <button className="interests-pill" onClick={() => setOpen(true)}>
+      <button className="interests-pill" style={{ bottom: lift }} onClick={() => setOpen(true)}>
         Dev Quotes ✦
       </button>
     )
@@ -29,11 +42,10 @@ export default function InterestsWidget() {
   const quote = QUOTES[index]
 
   return (
-    <div className="interests-widget">
+    <div className="interests-widget" style={{ bottom: lift }}>
       <button className="interests-close" onClick={() => setOpen(false)} aria-label="Minimize">
         ✕
       </button>
-      <h3>Dev &amp; AI Humor ⚡</h3>
       <div key={index} className="quote-slide">
         <p className="quote-text">“{quote.text}”</p>
         <p className="quote-author">— {quote.author}</p>

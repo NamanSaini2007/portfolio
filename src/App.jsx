@@ -192,7 +192,7 @@ export default function App() {
                 background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(56,189,248,0.6) 60%, rgba(255,255,255,0.9) 100%)',
                 boxShadow: '0 0 6px rgba(255,255,255,0.8)',
                 transform: 'rotate(-35deg)',
-                animation: `shootingStar 10s infinite ease-in-out ${i * 3.2}s`,
+                animation: `shootingStar ${[4, 5, 6][i]}s infinite ease-in-out ${[0, 1.6, 3.2][i]}s`,
               }}
             />
           ))}
